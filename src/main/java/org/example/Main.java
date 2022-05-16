@@ -1,120 +1,166 @@
 package org.example;
 
 //import java.sql.SQLOutput;
+//import javax.swing.plaf.synth.SynthLookAndFeel;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    public static int Multiply(int a, int b){
+        int total = a * b;
+        return total;
+    }
+
     public static void main(String[] args) {
 
 
 
         //number of walls to loop through system
         System.out.println("WELCOME TO WALL PAINT CALCULATOR 3000");
+
+        System.out.println("How many walls do you have to paint? ");
         int numberOfWalls = 1;
-        System.out.println("You have " + numberOfWalls + " wall.");
 
-        //wall width
-        //wall height
-        //product for area
-        float wallWidth = 10;
-        System.out.println("How wide, in metres, is your wall?");
-        Scanner widthScanner = new Scanner(System.in);
-        wallWidth = widthScanner.nextFloat();
+        Scanner wallScanner = new Scanner(System.in);
+        numberOfWalls = wallScanner.nextInt();
 
-        float wallHeight = 3;
-        System.out.println("How tall, in metres, is your wall?");
-        Scanner heightScanner = new Scanner(System.in);
-        wallHeight = heightScanner.nextFloat();
-
-        float wallAreaPrimitive = wallWidth * wallHeight;
-        System.out.println("Your wall's primitive area is " + wallAreaPrimitive + " square metres.");
+        System.out.println("You have " + numberOfWalls + " wall(s).");
 
 
-        //number of plug sockets
-        int numberOfSockets = 6;
-        //types of plug socket / light switch etc.
-        int numberOfSwitches = 2;
-        System.out.println("How many light switches do you have on this wall?");
-        Scanner countScanner = new Scanner(System.in);
-        numberOfSwitches = countScanner.nextInt();
 
-        int numberOfSingles = 2;
-        System.out.println("How many single-wide plug sockets do you have on this wall?");
-        //Scanner countScanner = new Scanner(System.in);
-        numberOfSingles = countScanner.nextInt();
+        float[] adjustedWallArea = new float[numberOfWalls];
 
-        int numberOfDoubles = 2;
-        System.out.println("How many double-wide plug sockets do you have on this wall?");
-        //Scanner countScanner = new Scanner(System.in);
-        numberOfDoubles = countScanner.nextInt();
+        int index = 0;
+        int wallsIndex = 0;
 
-        numberOfSockets = numberOfSingles + numberOfDoubles + numberOfSwitches;
-        float sockWidthSingle = 0.1f;
-        float sockWidthDouble = 0.2f;
-        float sockHeight = 0.1f;
-        //area of a plug socket (single, double, lightswitch)
-        float sockAreaSingle = sockWidthSingle * sockHeight;
-        float sockAreaDouble = sockWidthDouble * sockHeight;
-        float sockAreaSum = ((numberOfSingles + numberOfSwitches) * sockAreaSingle) + (numberOfDoubles * sockAreaDouble);
-        System.out.println("You have " + numberOfSockets + " sockets and switches on your wall");
-        System.out.println("The total area of your switches and sockets is " + sockAreaSum);
+        while (wallsIndex < numberOfWalls) {
+
+            //wall width
+            //wall height
+            //product for area
+            System.out.println("Wall number " + (wallsIndex+1));
+
+            float wallWidth = 10;
+            System.out.println("How wide, in metres, is this wall?");
+            Scanner widthScanner = new Scanner(System.in);
+            wallWidth = widthScanner.nextFloat();
+
+            float wallHeight = 3;
+            System.out.println("How tall, in metres, is this wall?");
+            Scanner heightScanner = new Scanner(System.in);
+            wallHeight = heightScanner.nextFloat();
+
+            float wallAreaPrimitive = wallWidth * wallHeight;
+            System.out.println("This wall's primitive area is " + wallAreaPrimitive + " square metres.");
 
 
-        int numberOfWindows = 1;//number of windows to loop through
+            //number of plug sockets
+            int numberOfSockets = 6;
+            //types of plug socket / light switch etc.
+            int numberOfSwitches = 2;
+            System.out.println("How many light switches do you have on this wall?");
+            Scanner countScanner = new Scanner(System.in);
+            numberOfSwitches = countScanner.nextInt();
 
-        System.out.println("How many windows do you have?");
+            int numberOfSingles = 2;
+            System.out.println("How many single-wide plug sockets do you have on this wall?");
+            //Scanner countScanner = new Scanner(System.in);
+            numberOfSingles = countScanner.nextInt();
 
-        Scanner inWindows = new Scanner(System.in);
-        numberOfWindows = inWindows.nextInt();
+            int numberOfDoubles = 2;
+            System.out.println("How many double-wide plug sockets do you have on this wall?");
+            //Scanner countScanner = new Scanner(System.in);
+            numberOfDoubles = countScanner.nextInt();
 
-        float wind1Width = 0f;//width of window (can also do doors)
-        float wind1Height = 0f;
+            numberOfSockets = numberOfSingles + numberOfDoubles + numberOfSwitches;
+            float sockWidthSingle = 0.1f;
+            float sockWidthDouble = 0.2f;
+            float sockHeight = 0.1f;
+            //area of a plug socket (single, double, lightswitch)
+            float sockAreaSingle = sockWidthSingle * sockHeight;
+            float sockAreaDouble = sockWidthDouble * sockHeight;
+            float sockAreaSum = ((numberOfSingles + numberOfSwitches) * sockAreaSingle) + (numberOfDoubles * sockAreaDouble);
+            System.out.println("You have " + numberOfSockets + " sockets and switches on your wall");
+            System.out.println("The total area of your switches and sockets is " + sockAreaSum);
 
-        switch (numberOfWindows){
-            case 0:
 
-                break;
-            default:
+            int numberOfWindows = 1;//number of windows to loop through
 
-                System.out.println("You have " + numberOfWindows + " window(s) on your wall.");
+            System.out.println("How many windows/doors do you have on this wall?");
+
+            Scanner inWindows = new Scanner(System.in);
+            numberOfWindows = inWindows.nextInt();
+
+            System.out.println("You have " + numberOfWindows + " window(s)/door(s) on your wall.");
+
+            index = 0;
+            float[] windArea = new float[numberOfWindows];
+            while (index < numberOfWindows){
+
+                System.out.println("Window/door number " + index);
+
+                float windWidth = 0f;//width of window (can also do doors)
+                float windHeight = 0f;
 
                 //height of window
-                System.out.println("How wide, in metres, is your window?");
-                wind1Width = widthScanner.nextFloat();
+                System.out.println("How wide, in metres, is your window/door?");
+                windWidth = widthScanner.nextFloat();
 
-                System.out.println("How tall, in metres, is your window?");
-                wind1Height = heightScanner.nextFloat();
+                System.out.println("How tall, in metres, is your window/door?");
+                windHeight = heightScanner.nextFloat();
 
                 //float wind2Width = 1.5f;
-                //float wind2Height = 3f;
+                // float wind2Height = 3f;
 
 
+                windArea[index] = windWidth * windHeight;//product for area of window
+                //float wind2Area = wind2Width * wind2Height;
+                //float windAreaSum = windArea; // + wind2Area;
 
-                break;
+                System.out.println("The area of your window/door is " + windArea[index] + " square metres.");
+
+                index ++;
+            }
+
+            float windAreaSum = 0;
+            index = 0;
+
+            while (index < numberOfWindows){
+                windAreaSum += windArea[index];
+                index++;
+            }
+
+            System.out.println("The sum of your window(s)/door(s) area is " + windAreaSum + " square metres.");
+
+
+            //subtract product of sockets and area of sockets from wall area
+            //subtract from wall area
+            adjustedWallArea[wallsIndex] = wallAreaPrimitive - (sockAreaSum + windAreaSum);
+
+            System.out.println("The total complex surface area of your wall is " + adjustedWallArea[wallsIndex] + ".");
+
+            wallsIndex ++;
         }
 
-        float wind1Area = wind1Width * wind1Height;//product for area of window
-        //float wind2Area = wind2Width * wind2Height;
-        float windAreaSum = wind1Area; // + wind2Area;
+        float totalComplexArea = 0;
 
-        System.out.println("The sum of your window area is " + windAreaSum + " square metres.");
+        index = 0;
 
-        //subtract product of sockets and area of sockets from wall area
-        //subtract from wall area
-        float adjustedWallArea = wallAreaPrimitive - (sockAreaSum + windAreaSum);
-
-        System.out.println("The total complex surface area of your wall is " + adjustedWallArea +".");
+        while (index < numberOfWalls){
+            totalComplexArea += adjustedWallArea[index];
+            index++;
+        }
 
         //paint litres per square meter - approx 1 litre per 6.5 mArea
         float mAreaPerLitre = 6;
         System.out.println("Assuming you can paint "+ mAreaPerLitre + " square metres of wall per litre of paint...");
-        float totalPaint = adjustedWallArea / mAreaPerLitre;
+        float totalPaint = totalComplexArea / mAreaPerLitre;
         System.out.println("You should expect to need " + totalPaint + " litres of paint.");
 
-        float[] litresPerPot = {10, 5, 2, 1, 0.5f};
+        float[] litresPerPot = {10, 5, 2, 1, 0.5f}; // use hashtables for these?
         int[] numberOfPots = {0, 0, 0, 0, 0};
         float[] paintPrice = {10.99f, 5.99f, 2.99f, 1.99f, 1.19f};
 
@@ -125,7 +171,7 @@ public class Main {
         //
         //}
 
-        int index = 0;
+        index = 0;
 
         while (index < litresPerPot.length){
 
@@ -161,7 +207,7 @@ public class Main {
         //    numberOfPots[3] = Math.round(litresRemainder / litresPerPot[4]);
         //    litresRemainder -= (numberOfPots[4] * litresPerPot[4]);
         //} else
-        //
+
         if (litresRemainder > 0){
             numberOfPots[numberOfPots.length-1] += 1;
         }
@@ -176,26 +222,44 @@ public class Main {
 
         index = 0;
 
-        //while (index < litresPerPot.length){
-        if(numberOfPots[0] > 0) {
-            System.out.println(numberOfPots[0] + " times " + litresPerPot[0] + "-litre pots of paint.");
+        while (index < litresPerPot.length) {
+
+            if (numberOfPots[index] > 0) {
+                System.out.println(numberOfPots[index] + " times " + litresPerPot[index] + "-litre pots of paint at £" + paintPrice[index] + " each.");
+            }
+            index++;
         }
 
-        if(numberOfPots[1] > 0) {
-            System.out.println(numberOfPots[1] + " times " + litresPerPot[1] + "-litre pots of paint.");
+        float totalCost = 0;
+        index = 0;
+
+        while (index < litresPerPot.length) {
+
+            totalCost += litresPerPot[index] * paintPrice[index];
+            index++;
         }
 
-        if(numberOfPots[2] > 0) {
-            System.out.println(numberOfPots[2] + " times " + litresPerPot[2] + "-litre pots of paint.");
-        }
+        System.out.println("Your total cost should be £" + totalCost);
+            //if (numberOfPots[0] > 0) {
+            //    System.out.println(numberOfPots[0] + " times " + litresPerPot[0] + "-litre pots of paint.");
+            //}
 
-        if(numberOfPots[3] > 0) {
-            System.out.println(numberOfPots[3] + " times " + litresPerPot[3] + "-litre pots of paint.");
-        }
+            //if (numberOfPots[1] > 0) {
+            //    System.out.println(numberOfPots[1] + " times " + litresPerPot[1] + "-litre pots of paint.");
+            //}
 
-        if(numberOfPots[4] > 0) {
-            System.out.println(numberOfPots[4] + " times " + litresPerPot[4] + "-litre pots of paint.");
-        }
+            //if (numberOfPots[2] > 0) {
+            //    System.out.println(numberOfPots[2] + " times " + litresPerPot[2] + "-litre pots of paint.");
+            //}
+
+            //if (numberOfPots[3] > 0) {
+            //    System.out.println(numberOfPots[3] + " times " + litresPerPot[3] + "-litre pots of paint.");
+            //}
+
+            //if (numberOfPots[4] > 0) {
+            //    System.out.println(numberOfPots[4] + " times " + litresPerPot[4] + "-litre pots of paint.");
+            //}
+
         //product of area and paint per area for volume of paint needed
         //select next size up from volume needed  - what are available sizes?
 
@@ -205,9 +269,9 @@ public class Main {
         //number of pots times price gets total price
 
         //designated colour in (not RGB i guess) CMY
-        byte cyan = (byte) 200;
-        byte magenta = (byte) 200;
-        byte yellow = (byte) 200;
+        //byte cyan = (byte) 200;
+        //byte magenta = (byte) 200;
+        //byte yellow = (byte) 200;
         //calculate mix colours
         // calc volume of each paint
 
@@ -228,9 +292,9 @@ public class Main {
     {
         //
         Random rand = new Random();
-        int num1 = rand.nextInt(50);
-        int num2 = rand.nextInt(50);
-        int num3 = rand.nextInt(50);
+        int num1 = rand.nextInt(20);
+        int num2 = rand.nextInt(20);
+        int num3 = rand.nextInt(20);
 
         int sum = num1 + num2 + num3;
         int prod = num1 * num2 * num3;
