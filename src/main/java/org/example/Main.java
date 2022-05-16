@@ -176,7 +176,7 @@ public class Main {
 
         index = 0;
 
-        while (index < litresPerPot.length){
+        //while (index < litresPerPot.length){
         if(numberOfPots[0] > 0) {
             System.out.println(numberOfPots[0] + " times " + litresPerPot[0] + "-litre pots of paint.");
         }
